@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Person</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+        form {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        input[type="submit"] {
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
+            color: #fff;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        input[type="submit"]:hover {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(118, 72, 255, 0.5);
+        }
+
+        div {
+            color: #ff4d4d;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+<a class="back-button" href="/people">Back</a>
+<form th:method="POST" th:action="@{/people}" th:object="${person}">
+    <label for="name">Enter name:</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <div th:if="${#fields.hasErrors('name')}", th:errors="*{name}"></div>
+    <br/>
+    <label for="age">Enter age:</label>
+    <input type="number" th:field="*{age}" id="age"/>
+    <div th:if="${#fields.hasErrors('age')}", th:errors="*{age}"></div>
+    <br/>
+    <label for="email">Enter email:</label>
+    <input type="email" th:field="*{email}" id="email"/>
+    <div th:if="${#fields.hasErrors('email')}", th:errors="*{email}"></div>
+    <br/>
+    <input type="submit" value="Create!">
+</form>
+</body>
+</html>

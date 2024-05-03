@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <title>All people</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .person-link,
+        .create-link {
+            display: block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 10px 20px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+            width: 200px;
+            margin: 10px auto;
+        }
+
+        .person-link:hover,
+        .create-link:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #ddd;
+            margin-top: 20px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div th:each="person : ${people}">
+        <a class="person-link" th:href="@{/people/{id}(id=${person.getId()})}" th:text="${person.getName()}">user</a>
+    </div>
+    <hr/>
+    <a class="create-link" href="/people/new">Create new person</a>
+</div>
+</body>
+</html>

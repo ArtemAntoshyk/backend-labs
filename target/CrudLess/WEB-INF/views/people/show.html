@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>People</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+        }
+
+        .card p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .card a {
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .card form {
+            display: inline-block;
+        }
+
+        .card input[type="submit"] {
+            cursor: pointer;
+            background: linear-gradient(135deg, #ff6a00 0%, #ee0979 100%);
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+            display: inline-block;
+        }
+
+        .card input[type="submit"]:hover {
+            background: linear-gradient(135deg, #ee0979 0%, #ff6a00 100%);
+        }
+        .back-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .back-button:hover {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+        }
+    </style>
+
+</head>
+<body>
+<a class="back-button" href="/people">Back</a>
+<div class="card">
+    <p><strong>ID:</strong> <span th:text="${person.getId()}">VALUE</span></p>
+    <p><strong>Name:</strong> <span th:text="${person.getName()}">VALUE</span></p>
+    <p><strong>Email:</strong> <span th:text="${person.getEmail()}">VALUE</span></p>
+    <p><strong>Age:</strong> <span th:text="${person.getAge()}">VALUE</span></p>
+
+    <a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
+    <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
+        <input type="submit" value="DELETE"/>
+    </form>
+</div>
+</body>
+</html>
